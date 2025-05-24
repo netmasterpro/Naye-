@@ -32,11 +32,17 @@ function changeDirection(dir) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  for (let i = 0; i < snake.length; i++) {
-    ctx.fillStyle = i === 0 ? "#ff69b4" : "#ffc0cb";
-    ctx.fillRect(snake[i].x, snake[i].y, box, box);
+  // Dibuja la serpiente como una línea continua
+  ctx.beginPath();
+  ctx.moveTo(snake[0].x + box / 2, snake[0].y + box / 2); // Comienza en la cabeza de la serpiente
+  for (let i = 1; i < snake.length; i++) {
+    ctx.lineTo(snake[i].x + box / 2, snake[i].y + box / 2); // Dibuja líneas hacia cada segmento
   }
+  ctx.lineWidth = box; // Grosor de la línea
+  ctx.strokeStyle = "#ff69b4"; // Color de la serpiente
+  ctx.stroke(); // Dibuja la línea
 
+  // Dibuja la comida
   ctx.drawImage(heartImage, food.x + 2, food.y + 2, box - 4, box - 4);
 
   let headX = snake[0].x;
@@ -86,8 +92,8 @@ function draw() {
 
 function startGame(speed = 140) {
   currentSpeed = speed;
-  snake = [{ x: 5 * box, y: 5 * box }]; // Asegúrate de que la posición inicial sea válida
-  direction = "right"; // Asegúrate de que la dirección inicial sea válida
+  snake = [{ x: 5 * box, y: 5 * box }];
+  direction = "right";
   food = generateFood();
   score = 0;
   document.getElementById("message").innerText = "";
