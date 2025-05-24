@@ -17,6 +17,8 @@ body, button {
   display: block;
   max-width: 90vw;
   height: auto;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
 }
 
 #controls {
@@ -36,12 +38,11 @@ body, button {
   border: none;
   border-radius: 50%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s; /* Transición suave */
 }
 
-.btn-row {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+.btn:hover {
+  background-color: #ff1493; /* Color al pasar el mouse */
 }
 
 #message {
@@ -62,6 +63,11 @@ body, button {
   border: none;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+#restart:hover {
+  background-color: #c71585; /* Color al pasar el mouse */
 }
 
 #counter {
@@ -86,6 +92,11 @@ body, button {
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+#speed-controls button:hover {
+  background-color: #ff69b4; /* Color al pasar el mouse */
 }
 
 #finalImage {
