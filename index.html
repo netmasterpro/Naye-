@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Culebrita de Amor</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ff69b4">
+</head>
+<body>
+  <h1>💖 Jueguito para mi ojitos de uva ❤️ Nayeli 💖</h1>
+  <h1>💖 Si lo completa su recompensa llegará de alguna forma 💖</h1>
+
+  <canvas id="game" width="300" height="300"></canvas>
+
+  <div id="speed-controls">
+    <button onclick="startGameWithSpeed('dificil')">Difícil</button>
+    <button onclick="startGameWithSpeed('normal')">Normal</button>
+    <button onclick="startGameWithSpeed('facil')">Fácil</button>
+  </div>
+
+  <div id="controls">
+    <div><button class="btn" onclick="changeDirection('up')">⬆️</button></div>
+    <div class="btn-row">
+      <button class="btn" onclick="changeDirection('left')">⬅️</button>
+      <button class="btn" onclick="changeDirection('down')">⬇️</button>
+      <button class="btn" onclick="changeDirection('right')">➡️</button>
+    </div>
+  </div>
+
+  <div id="counter">Corazones: 0 / 20</div>
+  <div id="message"></div>
+  <button id="restart" onclick="restartGame()">Volver a jugar</button>
+  <button onclick="togglePause()">⏸️ Pausar / Reanudar</button>
+  <img id="finalImage" src="icon-512.png" style="display:none; margin-top: 15px; max-width: 90%;" />
+
+  <script src="juego.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker registrado ✅'))
+        .catch(err => console.error('Error al registrar el SW 😢', err));
+    }
+  </script>
+</body>
+</html>
