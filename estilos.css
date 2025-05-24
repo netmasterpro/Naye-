@@ -1,12 +1,20 @@
+/* Estilos generales */
 body, button {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   background: linear-gradient(to bottom right, #ffe6f0, #ffccff);
   text-align: center;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  min-height: 100vh;
+}
+
+h1, h2 {
+  color: #d63384;
+  margin: 10px 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 #game {
@@ -17,70 +25,92 @@ body, button {
   display: block;
   max-width: 90vw;
   height: auto;
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Controles */
 #controls {
-  margin-top: 10px;
+  margin: 15px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
 .btn {
-  width: 50px;
-  height: 50px;
-  font-size: 22px;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
   background-color: #ff69b4;
   color: white;
   border: none;
   border-radius: 50%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s; /* Transición suave */
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background-color: #ff1493; /* Color al pasar el mouse */
+  background-color: #ff1493;
+  transform: scale(1.05);
 }
 
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Mensajes y contador */
 #message {
-  margin-top: 15px;
+  margin: 15px auto;
   font-size: 18px;
   color: #d63384;
   min-height: 40px;
+  padding: 10px;
   transition: all 0.4s ease-in-out;
+  max-width: 300px;
 }
 
+#counter {
+  margin: 10px auto;
+  font-size: 20px;
+  color: #c71585;
+  font-weight: bold;
+}
+
+/* Botones de acción */
 #restart {
   display: none;
-  margin-top: 10px;
-  padding: 10px 20px;
+  margin: 10px auto;
+  padding: 12px 25px;
   font-size: 18px;
   background-color: #d63384;
   color: white;
   border: none;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s; /* Transición suave */
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 #restart:hover {
-  background-color: #c71585; /* Color al pasar el mouse */
-}
-
-#counter {
-  margin-top: 10px;
-  font-size: 20px;
-  color: #c71585;
+  background-color: #c71585;
+  transform: translateY(-2px);
 }
 
 #speed-controls {
-  margin: 10px 0;
+  margin: 15px auto;
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 #speed-controls button {
@@ -92,15 +122,32 @@ body, button {
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-  transition: background-color 0.3s; /* Transición suave */
+  transition: all 0.3s;
 }
 
 #speed-controls button:hover {
-  background-color: #ff69b4; /* Color al pasar el mouse */
+  background-color: #ff69b4;
 }
 
 #finalImage {
   border: 5px solid #ff69b4;
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+  max-width: 200px;
+  margin: 15px auto;
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  #game {
+    width: 280px;
+    height: 280px;
+  }
 }
