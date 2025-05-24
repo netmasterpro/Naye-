@@ -1,65 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Culebrita de Amor</title>
-  <meta name="description" content="Un juego de amor para Nayeli">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Culebrita de Amor 💖</title>
+  <meta name="description" content="Un juego especial de amor para Nayeli">
+  <meta name="theme-color" content="#ff69b4">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Culebrita de Amor">
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="estilos.css">
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#ff69b4">
   <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
-  <h1>💖 Jueguito para mi ojitos de uva ❤️ Nayeli 💖</h1>
-  <h2>💖 Si lo completa su recompensa llegará de alguna forma 💖</h2>
+  <header>
+    <h1>💖 Jueguito para mi ojitos de uva ❤️ Nayeli 💖</h1>
+    <h2>💖 Si lo completas, tu recompensa llegará de alguna forma 💖</h2>
+  </header>
 
-  <canvas id="game" width="300" height="300"></canvas>
+  <main>
+    <canvas id="game" width="300" height="300"></canvas>
 
-  <div id="speed-controls">
-    <button onclick="startGameWithSpeed(140)">Difícil</button>
-    <button onclick="startGameWithSpeed(200)">Normal</button>
-    <button onclick="startGameWithSpeed(300)">Fácil</button>
-  </div>
-
-  <div id="controls">
-    <div><button class="btn" onclick="changeDirection('up')" aria-label="Mover arriba">⬆️</button></div>
-    <div class="btn-row">
-      <button class="btn" onclick="changeDirection('left')" aria-label="Mover izquierda">⬅️</button>
-      <button class="btn" onclick="changeDirection('down')" aria-label="Mover abajo">⬇️</button>
-      <button class="btn" onclick="changeDirection('right')" aria-label="Mover derecha">➡️</button>
+    <div id="speed-controls">
+      <button onclick="startGameWithSpeed(140)">Difícil</button>
+      <button onclick="startGameWithSpeed(200)">Normal</button>
+      <button onclick="startGameWithSpeed(300)">Fácil</button>
     </div>
-  </div>
 
-  <div id="counter">Corazones: 0 / 20</div>
-  <div id="message"></div>
-  <button id="restart" onclick="restartGame()">Volver a jugar</button>
-  <button onclick="togglePause()">⏸️ Pausar / Reanudar</button>
-  <img id="finalImage" src="icon-512.png" alt="Recompensa para Nayeli" style="display:none; margin-top: 15px; max-width: 90%;" />
+    <div id="controls">
+      <div><button class="btn" onclick="changeDirection('up')" aria-label="Mover arriba">⬆️</button></div>
+      <div class="btn-row">
+        <button class="btn" onclick="changeDirection('left')" aria-label="Mover izquierda">⬅️</button>
+        <button class="btn" onclick="changeDirection('down')" aria-label="Mover abajo">⬇️</button>
+        <button class="btn" onclick="changeDirection('right')" aria-label="Mover derecha">➡️</button>
+      </div>
+    </div>
+
+    <div id="counter">Corazones: 0 / 20</div>
+    <div id="message">Usa los botones o las flechas del teclado para moverte</div>
+    
+    <div class="action-buttons">
+      <button id="restart" onclick="restartGame()">Volver a jugar</button>
+      <button onclick="togglePause()">⏸️ Pausar/Reanudar</button>
+    </div>
+
+    <img id="finalImage" src="icon-512.png" alt="Recompensa especial para Nayeli">
+  </main>
 
   <script src="juego.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
-          .then(registration => {
-            console.log('ServiceWorker registrado con éxito:', registration.scope);
-            // Verificar actualizaciones cada vez que se carga la página
-            registration.update();
-          })
-          .catch(error => {
-            console.error('Error al registrar el ServiceWorker:', error);
-          });
+          .then(reg => console.log('Service Worker registrado ✅', reg.scope))
+          .catch(err => console.error('Error registrando SW ❌', err));
       });
     }
-
-    // Mostrar instrucciones al inicio
-    window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('message').innerText = 'Usa los botones o las flechas del teclado para moverte';
-    });
   </script>
 </body>
 </html>
