@@ -5,15 +5,26 @@
   "display": "standalone",
   "background_color": "#ffe6f0",
   "theme_color": "#ff69b4",
+  "description": "Un juego especial de amor para Nayeli",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "640x320",
       "type": "image/png"
     }
   ]
