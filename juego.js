@@ -32,19 +32,26 @@ function changeDirection(dir) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // Dibuja la comida
+  ctx.drawImage(heartImage, food.x + 2, food.y + 2, box - 4, box - 4);
+
   // Dibuja la serpiente como una línea continua
   ctx.beginPath();
   ctx.moveTo(snake[0].x + box / 2, snake[0].y + box / 2); // Comienza en la cabeza de la serpiente
   for (let i = 1; i < snake.length; i++) {
     ctx.lineTo(snake[i].x + box / 2, snake[i].y + box / 2); // Dibuja líneas hacia cada segmento
   }
+
+  // Estilo de la serpiente
+  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  gradient.addColorStop(0, "#ff69b4"); // Color de la cabeza
+  gradient.addColorStop(1, "#ffc0cb"); // Color del cuerpo
+
   ctx.lineWidth = box; // Grosor de la línea
-  ctx.strokeStyle = "#ff69b4"; // Color de la serpiente
+  ctx.strokeStyle = gradient; // Color de la serpiente
   ctx.stroke(); // Dibuja la línea
 
-  // Dibuja la comida
-  ctx.drawImage(heartImage, food.x + 2, food.y + 2, box - 4, box - 4);
-
+  // Mueve la cabeza de la serpiente
   let headX = snake[0].x;
   let headY = snake[0].y;
 
@@ -53,6 +60,7 @@ function draw() {
   if (direction === "right") headX += box;
   if (direction === "down") headY += box;
 
+  // Verifica si la serpiente ha comido la comida
   if (headX === food.x && headY === food.y) {
     score++;
     document.getElementById("counter").innerText = `Corazones: ${score} / 20`;
@@ -69,11 +77,12 @@ function draw() {
       document.getElementById("message").innerText = compliment;
     }
   } else {
-    snake.pop();
+    snake.pop(); // Elimina el último segmento si no ha comido
   }
 
   const newHead = { x: headX, y: headY };
 
+  // Verifica colisiones
   if (
     headX < 0 ||
     headX >= canvas.width ||
@@ -87,7 +96,7 @@ function draw() {
     return;
   }
 
-  snake.unshift(newHead);
+  snake.unshift(newHead); // Agrega la nueva cabeza
 }
 
 function startGame(speed = 140) {
